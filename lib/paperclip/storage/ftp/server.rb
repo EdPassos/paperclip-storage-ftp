@@ -24,7 +24,7 @@ module Paperclip
 
         def establish_connection
           @connection = DoubleBagFTPS.new
-          @connection.ssl_context = DoubleBagFTPS.create_ssl_context(:verify_mode => OpenSSL::SSL::VERIFY_MODE)
+          @connection.ssl_context = DoubleBagFTPS.create_ssl_context(:verify_mode => OpenSSL::SSL::VERIFY_NONE)
           @connection.passive = passive
 
           if ignore_connect_errors
