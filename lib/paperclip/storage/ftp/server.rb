@@ -1,5 +1,6 @@
 require "pathname"
 require "net/ftp"
+require "net/ftptls"
 require "timeout"
 
 module Paperclip
@@ -17,11 +18,11 @@ module Paperclip
             send("#{k}=", v)
           end
 
-          @port ||= Net::FTP::FTP_PORT
+          @port ||= Net::FTPTLS::FTP_PORT
         end
 
         def establish_connection
-          @connection = Net::FTP.new
+          @connection = Net::FTPTLS.new
           @connection.passive = passive
 
           if ignore_connect_errors
