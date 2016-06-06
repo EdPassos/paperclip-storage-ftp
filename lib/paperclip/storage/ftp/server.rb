@@ -1,5 +1,6 @@
 require "pathname"
 require "double_bag_ftps"
+require "openssl"
 require "net/ftp"
 require "timeout"
 

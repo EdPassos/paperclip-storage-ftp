@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'double-bag-ftps'
+gem 'openssl'
 
 group :test do
   gem "sqlite3",                          :platforms => :ruby
