@@ -1,6 +1,6 @@
 require "pathname"
+require "double_bag_ftps"
 require "net/ftp"
-require "net/ftptls"
 require "timeout"
 
 module Paperclip
@@ -18,11 +18,12 @@ module Paperclip
             send("#{k}=", v)
           end
 
-          @port ||= Net::FTPTLS::FTP_PORT
+          @port ||= Net::FTP::FTP_PORT
         end
 
         def establish_connection
-          @connection = Net::FTPTLS.new
+          @connection = Net::DoubleBagFTPS.new
+          @connection.ssl_context = DoubleBagFTPS.create_ssl_context(:verify_mode => OpenSSL::SSL::VERIFY_MODE)
           @connection.passive = passive
 
           if ignore_connect_errors
